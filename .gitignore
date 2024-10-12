@@ -38,3 +38,6 @@ next-env.d.ts
 /model/bin
 /model/lib
 /model/include
+/model/Scripts
+/model/pyvenv.cfg
+/model/Include
