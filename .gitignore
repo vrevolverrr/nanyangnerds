@@ -38,3 +38,4 @@ next-env.d.ts
 /model/bin
 /model/lib
 /model/include
+/model/Scripts
