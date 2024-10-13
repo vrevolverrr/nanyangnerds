@@ -41,3 +41,8 @@ next-env.d.ts
 /model/Scripts
 /model/pyvenv.cfg
 /model/Include
+
+/model/share
+/model/.env
+
+credentials.json
