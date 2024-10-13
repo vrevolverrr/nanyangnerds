@@ -19,6 +19,15 @@ OmniSense continuously scrapes news articles, summarizes them using OpenAI’s L
 - Run the tool to automatically process real-time news, generate summaries, and predict disruptions.
 - Access the results, which include disruption probabilities and key insights for each relevant trade route.
 
+## Features
+- Ingesting Massive Data Streams: OmniSense processes vast amounts of data, from news articles and social media posts to government reports and weather updates, identifying critical insights impacting global trade.
+- News Filtering and Tagging: It filters and tags news reports based on specific trade routes, detecting significant events near ports instantly.
+- Summarization with LLM: Using a Large Language Model (LLM), OmniSense quickly summarizes news, extracting key takeaways and filtering out irrelevant information.
+- Timeline Construction: Summaries are organized into timelines, allowing PSA to track events and their progression over time for each route.
+- Event Sequence Analysis: Instead of looking at isolated events, OmniSense analyzes event sequences to understand how disruptions escalate and develop.
+- Historical Event Comparison: The tool uses a RAG (Retrieve and Generate) approach to compare current events with historical disruptions, identifying patterns and parallels.
+Risk Scoring with BERT Model: OmniSense generates a risk score for each trade route segment, enabling PSA to assess the likelihood of disruptions and take preventive action to reduce delays and emissions.
+
 ## Contributors
 This project is built by the Nanyang Nerds team:
 - Bryan
