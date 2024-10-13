@@ -25,7 +25,7 @@ OmniSense continuously scrapes news articles, summarizes them using OpenAI’s L
 - Summarization with LLM: Using a Large Language Model (LLM), OmniSense quickly summarizes news, extracting key takeaways and filtering out irrelevant information.
 - Timeline Construction: Summaries are organized into timelines, allowing PSA to track events and their progression over time for each route.
 - Event Sequence Analysis: Instead of looking at isolated events, OmniSense analyzes event sequences to understand how disruptions escalate and develop.
-- Historical Event Comparison: The tool uses a RAG (Retrieve and Generate) approach to compare current events with historical disruptions, identifying patterns and parallels.
+- Historical Event Comparison using BERT Model: The tool utilize BERT model approach to compare current events with historical disruptions, identifying patterns and parallels.
 Risk Scoring with BERT Model: OmniSense generates a risk score for each trade route segment, enabling PSA to assess the likelihood of disruptions and take preventive action to reduce delays and emissions.
 
 ## Contributors
