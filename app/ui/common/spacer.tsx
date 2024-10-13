@@ -3,5 +3,5 @@ interface SpacerProps {
 }
 
 export default function Spacer(props: SpacerProps) {
-    return <div style={{width: "100%", height: `${props.height}px`}}/>
+    return <div style={{width: "100%", minHeight: `${props.height}px`}}/>
 }

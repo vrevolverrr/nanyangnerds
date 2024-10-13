@@ -10,11 +10,19 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "AfacadFlux";
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.custom-leaflet-marker {
+  transition: 0.3s ease-in;
+}
+
+.custom-leaflet-marker:hover {
+  transform: scale(1.2);
 }
