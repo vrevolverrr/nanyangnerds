@@ -7,7 +7,7 @@ type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 interface DatePickerProps {
-    onChangeHandler: Function
+    onChangeHandler: (value: Value) => void
 }
 
 export default function DatePicker(props: DatePickerProps) {
@@ -17,7 +17,6 @@ export default function DatePicker(props: DatePickerProps) {
     <div style={{zIndex: "10000", color: "black", position: "absolute", top: "10px", left: "calc(50vw - 150px)"}}>
       <DateRangePicker format={"dd-MM-y"} onChange={(value) => {
         setValue(value)
-        console.log(value)
         props.onChangeHandler(value)
       }} value={value} />
     </div>

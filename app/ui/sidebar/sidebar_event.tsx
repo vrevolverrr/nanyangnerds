@@ -1,7 +1,6 @@
 import { NewsEvent } from "@/app/lib/firebase"
 import Spacer from "../common/spacer"
 import { RISK_GREEN, RISK_RED, RISK_YELLOW } from "../common/colors"
-import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 
 const style: React.CSSProperties = {
     width: "100%",

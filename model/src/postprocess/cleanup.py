@@ -82,5 +82,4 @@ def add_geodata():
         with open("final_with_latlng", "w") as f:
             json.dump(data, f)
         
-
 add_geodata()

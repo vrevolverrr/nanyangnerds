@@ -1,16 +1,17 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+
+import React  from 'react';
 import dynamic from 'next/dynamic';
 import { routes } from '../data/routes';
 import { NewsEvent } from '../lib/firebase';
 import 'leaflet/dist/leaflet.css';
-import L, { marker } from 'leaflet';
+import L from 'leaflet';
 import { getAggregateRisk } from '../lib/riskscorer';
 import { RISK_GREEN, RISK_RED, RISK_YELLOW } from './common/colors';
 
 interface OmniMapProps {
   newsEvents: NewsEvent[]
-  updateSegmentCallback: Function
+  updateSegmentCallback: (routeName: string) => void
 }
 
 function createMarkerIcon(riskScore: number) {

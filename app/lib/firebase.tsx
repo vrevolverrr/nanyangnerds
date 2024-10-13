@@ -1,5 +1,5 @@
 import { initializeApp, FirebaseApp } from "firebase/app";
-import { Firestore, getFirestore, getDocs, collection, doc, GeoPoint } from "firebase/firestore";
+import { Firestore, getFirestore, getDocs, collection, GeoPoint } from "firebase/firestore";
 
 export class FirestoreDB {
     app: FirebaseApp

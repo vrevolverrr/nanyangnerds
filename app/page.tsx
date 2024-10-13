@@ -13,7 +13,7 @@ export default function App() {
   const [dateRange, setDateRange] = useState<Date[]>([new Date(2024, 8, 30), new Date()])
    
   useEffect(() => {
-    var dates
+    let dates
 
     if (dateRange.length > 0) {
       dates = getCollectionsFromDates(dateRange[0], dateRange[1])
@@ -23,7 +23,7 @@ export default function App() {
 
     const newsData: NewsEvent[] = []
 
-    Promise.all(dates.map(d => firedb.fetchEvents(d).then(r => newsData.push(...r)))).then((_) => {
+    Promise.all(dates.map(d => firedb.fetchEvents(d).then(r => newsData.push(...r)))).then(() => {
       setEventsData(newsData);
     })
   }, [dateRange])
@@ -34,7 +34,7 @@ export default function App() {
       <div style={{display: "flex"}}>
         <Sidebar segment={activeSegment} newsEvents={(eventsData ?? []).filter((newsEvent) => newsEvent.segment.toLowerCase() == activeSegment?.toLowerCase())}/>
         <OmniMap updateSegmentCallback={(segment: string) => setActiveSegment(segment)} newsEvents={eventsData ?? []}/>
-          <DatePicker onChangeHandler={setDateRange}/>
+          <DatePicker onChangeHandler={(value) => setDateRange(value as Date[])}/>
       </div>
     </div>
   );

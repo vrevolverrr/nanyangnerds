@@ -11,9 +11,9 @@ export default function getCollectionsFromDates(start: Date, end: Date) {
 }
 
 function formatDate(date: Date) {
-    var month = '' + (date.getMonth() + 1)
-    var day = '' + date.getDate()
-    var year = date.getFullYear()
+    let month = '' + (date.getMonth() + 1)
+    let day = '' + date.getDate()
+    let year = date.getFullYear()
 
     if (month.length < 2) 
         month = '0' + month
