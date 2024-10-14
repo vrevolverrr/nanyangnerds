@@ -43,8 +43,8 @@ export default function Sidebar(props: SidebarProps) {
             <SidebarStats riskScore={getAggregateRisk(props.segment, props.newsEvents)} numEvents={props.newsEvents.length}/>
             <Spacer height={15.0} />
 
-            {props.newsEvents.length > 0 ? props.newsEvents.map(newsEvent => 
-                <SidebarEvent newsEvent={newsEvent}/>
+            {props.newsEvents.length > 0 ? props.newsEvents.map((newsEvent, index) => 
+                <SidebarEvent key={index} newsEvent={newsEvent}/>
             ) : <p style={{color: "black"}}>No critical events affecting this region.</p>}
         </div>
     );
