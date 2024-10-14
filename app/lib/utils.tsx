@@ -1,6 +1,6 @@
 export default function getCollectionsFromDates(start: Date, end: Date) {
     const collections = []
-    const cur = start
+    const cur = new Date(start.getTime())
     
     while (cur < end) {
         cur.setDate(cur.getDate() + 1)
@@ -13,7 +13,7 @@ export default function getCollectionsFromDates(start: Date, end: Date) {
 function formatDate(date: Date) {
     let month = '' + (date.getMonth() + 1)
     let day = '' + date.getDate()
-    let year = date.getFullYear()
+    const year = date.getFullYear()
 
     if (month.length < 2) 
         month = '0' + month
