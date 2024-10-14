@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import logo from '../logo.jpg'
-import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 
 const style: React.CSSProperties = {
     width: "100vw",
