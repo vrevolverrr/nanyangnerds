@@ -1,13 +1,40 @@
 'use client';
 
 import React  from 'react';
-import dynamic from 'next/dynamic';
 import { routes } from '../data/routes';
 import { NewsEvent } from '../lib/firebase';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { getAggregateRisk } from '../lib/riskscorer';
 import { RISK_GREEN, RISK_RED, RISK_YELLOW } from './common/colors';
+import dynamic from 'next/dynamic';
+
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+
+const Marker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Marker),
+  { ssr: false }
+);
+
+const Polyline = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Polyline),
+  { ssr: false }
+);
+
+const Tooltip = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Tooltip),
+  { ssr: false }
+);
+
+export { MapContainer, TileLayer, Marker, Polyline, Tooltip }
 
 interface OmniMapProps {
   newsEvents: NewsEvent[]
@@ -24,26 +51,11 @@ function createMarkerIcon(riskScore: number) {
 }
 
 export default class OmniMap extends React.Component<OmniMapProps> {
-  shouldComponentUpdate(nextProps: Readonly<OmniMapProps>, nextState: Readonly<{}>, nextContext: any): boolean {
+  shouldComponentUpdate(nextProps: Readonly<OmniMapProps>): boolean {
     return nextProps.newsEvents != this.props.newsEvents
   }
 
   render(): React.ReactNode {
-    const MapContainer = dynamic(
-      () => import('react-leaflet').then((mod) => mod.MapContainer),
-      { ssr: false }
-    );
-  
-    const TileLayer = dynamic(
-      () => import('react-leaflet').then((mod) => mod.TileLayer),
-      { ssr: false }
-    );
-  
-    const Marker = dynamic(
-      () => import('react-leaflet').then((mod) => mod.Marker),
-      { ssr: false }
-    );
-  
     const mapContainerStyle: React.CSSProperties = {
       width: "100%", height: "calc(100% - 50px)", zIndex: "0", padding: "0 15px 15px 15px", borderRadius: "15px",
       boxShadow: "box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px"
@@ -57,8 +69,8 @@ export default class OmniMap extends React.Component<OmniMapProps> {
             attribution='&copy; Nanyang Nerds PSA Code Sprint 2024'
           />
           <DrawRouteSegment updateSegmentCallback={this.props.updateSegmentCallback} newsEvents={this.props.newsEvents} />
-          {(this.props.newsEvents != undefined) ? this.props.newsEvents.map(event => 
-            <Marker position={[event.location.latitude, event.location.longitude]} icon={createMarkerIcon(event.risk)}></Marker>
+          {(this.props.newsEvents != undefined) ? this.props.newsEvents.map((event, index) => 
+            <Marker key={index} position={[event.location.latitude, event.location.longitude]} icon={createMarkerIcon(event.risk)}></Marker>
           ) : <div></div>}
         </MapContainer>
       </div>
@@ -67,16 +79,6 @@ export default class OmniMap extends React.Component<OmniMapProps> {
 }
 
 function DrawRouteSegment(props: OmniMapProps) {
-  const Polyline = dynamic(
-    () => import('react-leaflet').then((mod) => mod.Polyline),
-    { ssr: false }
-  );
-
-  const Tooltip = dynamic(
-    () => import('react-leaflet').then((mod) => mod.Tooltip),
-    { ssr: false }
-  );
-
   return (
    <React.Fragment>
       {routes.map((route, index) => {
@@ -87,7 +89,7 @@ function DrawRouteSegment(props: OmniMapProps) {
         positions={route.coordinates}
         eventHandlers={
           {
-            click: (e: L.LeafletMouseEvent) => props.updateSegmentCallback(route.name)
+            click: () => props.updateSegmentCallback(route.name)
           }
         }
         pathOptions={{

@@ -1,11 +1,13 @@
 'use client';
 import MenuBar from './ui/menu_bar';
 import Sidebar from './ui/sidebar/sidebar';
-import OmniMap from './ui/map';
 import { useEffect, useState } from 'react';
 import firedb, { NewsEvent } from './lib/firebase';
 import getCollectionsFromDates from './lib/utils';
 import DatePicker from './ui/datepicker/datepicker';
+import dynamic from 'next/dynamic';
+
+const OmniMap = dynamic(() => import('./ui/map'), { ssr: false });
 
 export default function App() {
   const [eventsData, setEventsData] = useState<NewsEvent[]>()
